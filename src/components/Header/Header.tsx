@@ -1,14 +1,19 @@
+'use client'
+
+import ThemeContext from '@/context/themeContext'
 import Link from 'next/link'
-import React from 'react'
+import React, { useContext } from 'react'
 import { FaUserCircle } from 'react-icons/fa'
-import { MdDarkMode } from 'react-icons/md'
+import { MdDarkMode, MdLightMode } from 'react-icons/md'
 
 const Header = () => {
+  const { darkTheme, setDarkTheme } = useContext(ThemeContext)
+
   return (
     <header className='py-10 px-4 container mx-auto text-xl flex flex-wrap md:flex-nowrap items-center justify-between'>
       <div className='flex items-center w-full md:2/3'>
         <Link href='/' className='font-black text-tertiary-dark'>
-          Hotel
+          HOTEL MARINA BAY
         </Link>
         <ul className='flex items-center ml-5'>
           <li className='flex items-center'>
@@ -17,7 +22,17 @@ const Header = () => {
             </Link>
           </li>
           <li className='ml-2'>
-            <MdDarkMode className='cursor-pointer' />
+            { darkTheme ? (
+              <MdLightMode className='cursor-pointer' onClick={() => {
+                setDarkTheme(false)
+                localStorage.removeItem('hotel-theme')
+              }} />
+            ) : (
+              <MdDarkMode className='cursor-pointer' onClick={() => {
+                setDarkTheme(true)
+                localStorage.setItem('hotel-theme', 'true')
+              }} />
+            )}
           </li>
         </ul>
       </div>
