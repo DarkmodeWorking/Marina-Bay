@@ -8,6 +8,7 @@ export default defineConfig({
   title: 'marina-bay-hotel-management',
 
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID as string,
+  
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET as string,
 
   basePath: '/studio',
